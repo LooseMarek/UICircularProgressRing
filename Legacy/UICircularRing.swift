@@ -489,7 +489,7 @@ import UIKit
         ringLayer.timeOffset = pauseTime
 
         if let fireTime = animationCompletionTimer?.fireDate {
-            pausedTimeRemaining = fireTime.timeIntervalSince(Date.current)
+            pausedTimeRemaining = fireTime.timeIntervalSince(Date())
         } else {
             pausedTimeRemaining = 0
         }
