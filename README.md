@@ -27,7 +27,7 @@ Simply add this library to your package manifest or follow instructions on addin
 
 ```swift
 .package(
-    url: "https://github.com/luispadron/UICircularProgressRing.git",
+    url: "https://github.com/LooseMarek/UICircularProgressRing.git",
     .branch("master")
 )
 ```
@@ -36,7 +36,7 @@ Simply add this library to your package manifest or follow instructions on addin
 
 This projects public API is 100% documented and it's something we spend a lot of time working on. Please make sure to read the documentation before opening any issues, questions, etc.
 
-[Read the documentation 📖](https://htmlpreview.github.io/?https://github.com/luispadron/UICircularProgressRing/blob/master/docs/index.html)
+[Read the documentation 📖](https://htmlpreview.github.io/?https://github.com/LooseMarek/UICircularProgressRing/blob/master/docs/index.html)
 
 ## Usage
 

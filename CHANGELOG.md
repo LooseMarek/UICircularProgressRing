@@ -34,7 +34,7 @@
 
 # Version 6.0.1
 
-- Fix bug relating to label for rings being removed during animation ([#171](https://github.com/luispadron/UICircularProgressRing/issues/171))
+- Fix bug relating to label for rings being removed during animation ([#171](https://github.com/LooseMarek/UICircularProgressRing/issues/171))
 
 # Version 6.0.0
 
@@ -139,7 +139,7 @@ Some tips:
 ### Tons of new features and improvements!
 
 - Add new properties `showsValueKnob`, `valueKnobColor`, and `valueKnobSize`
-  as requested by [#97](https://github.com/luispadron/UICircularProgressRing/issues/97)
+  as requested by [#97](https://github.com/LooseMarek/UICircularProgressRing/issues/97)
 - Add new `continueProgress` and `pauseProgress` functions which allow fluid continuation
   and pausing of progress animations.
 - Add new delegate functions `didPauseProgress`, and `didContinueProgress`
@@ -177,7 +177,7 @@ Add right-to-left language support, thanks [eladhayun](https://github.com/eladha
 
 # Version 2.0.0
 
-Add feature requested in [#86](https://github.com/luispadron/UICircularProgressRing/issues/86) and general clean up and refactoring of API.
+Add feature requested in [#86](https://github.com/LooseMarek/UICircularProgressRing/issues/86) and general clean up and refactoring of API.
 
 - Add new `ring` paramater to functions `didUpdateProgressValue` and `willDisplayLabel` so that they can be used with multiple rings if needed.
 
@@ -364,8 +364,8 @@ This made sense to do because it was slightly confusing how to accomplish fonts 
 
 # Version 1.3.0
 
-- Add a property for accessing the current value of the progress ring while animating, closes [issue #14](https://github.com/luispadron/UICircularProgressRing/issues/14)
-- Add fix for removing a currently running animation when calling `setProgress(:)` while ring is animating, closes [issue #19](https://github.com/luispadron/UICircularProgressRing/issues/19)
+- Add a property for accessing the current value of the progress ring while animating, closes [issue #14](https://github.com/LooseMarek/UICircularProgressRing/issues/14)
+- Add fix for removing a currently running animation when calling `setProgress(:)` while ring is animating, closes [issue #19](https://github.com/LooseMarek/UICircularProgressRing/issues/19)
 - Fixed access levels for variables and functions, changed from `public` to `open` to allow subclassing.
 - Updated `docs` by running Jazzy
 
@@ -409,7 +409,7 @@ This made sense to do because it was slightly confusing how to accomplish fonts 
 
 # Version 1.1.7
 
-Fix bug where progress bar was pixelated inside of tableView from [issue #4](https://github.com/luispadron/UICircularProgressRing/issues/4)
+Fix bug where progress bar was pixelated inside of tableView from [issue #4](https://github.com/LooseMarek/UICircularProgressRing/issues/4)
 
 Thanks to [@DeepAnchor](https://github.com/DeepAnchor) for the fix!
 
