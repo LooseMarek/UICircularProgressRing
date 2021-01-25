@@ -70,12 +70,27 @@ final public class UICircularProgressRing: UICircularRing {
                 #endif
                 ringLayer.value = minValue
             } else if value > maxValue {
-                #if DEBUG
-                print("Warning in: \(#file):\(#line)")
-                print("Attempted to set a value greater than maxValue, value has been set to maxValue.\n")
-                #endif
-                ringLayer.value = maxValue
-            } else {
+                if (displayValueAboveMax) {
+                    // Set increased max as at some point progress ring will break and crash the app
+                    let increasedMax = maxValue * 20
+                    if (value > increasedMax) {
+                        #if DEBUG
+                        print("Warning in: \(#file):\(#line)")
+                        print("Attempted to set a value greater than maxValue, value has been set to maxValue x20.\n")
+                        #endif
+                        ringLayer.value = increasedMax
+                    } else {
+                        ringLayer.value = value
+                    }
+                } else {
+                    #if DEBUG
+                    print("Warning in: \(#file):\(#line)")
+                    print("Attempted to set a value greater than maxValue, value has been set to maxValue.\n")
+                    #endif
+                    ringLayer.value = maxValue
+                }
+            }
+            else {
                 ringLayer.value = value
             }
         }
@@ -133,6 +148,21 @@ final public class UICircularProgressRing: UICircularRing {
      */
     @IBInspectable public var maxValue: CGFloat = 100.0 {
         didSet { ringLayer.maxValue = maxValue }
+    }
+    
+    /**
+    Allow displaying value above set `maxValue`. If set to `false` the label will display `maxValue` for any values above it.
+
+    ## Important ##
+    Default = true
+
+    For more see documentation of `maxValue`.
+
+    ## Author
+    Marek Loose
+    */
+    @IBInspectable public var displayValueAboveMax: Bool = true {
+        didSet { ringLayer.displayValueAboveMax = displayValueAboveMax }
     }
 
     /**
@@ -193,7 +223,11 @@ final public class UICircularProgressRing: UICircularRing {
         self.completion = completion
 
         // call super class helper function to begin animating layer
-        startAnimation(duration: duration) {
+        startAnimation(duration: duration) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
             self.delegate?.didFinishProgress(for: self)
             self.completion?()
         }
@@ -228,7 +262,11 @@ final public class UICircularProgressRing: UICircularRing {
      */
     public func continueProgress() {
         // call super class helper to continue layer animation
-        continueAnimation {
+        continueAnimation { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
             self.delegate?.didFinishProgress(for: self)
             self.completion?()
         }

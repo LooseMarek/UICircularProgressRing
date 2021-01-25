@@ -358,10 +358,10 @@ import UIKit
 
     /// This stores the animation when the timer is paused. We use this variable to continue the animation where it left off.
     /// See https://stackoverflow.com/questions/7568567/restoring-animation-where-it-left-off-when-app-resumes-from-background
-    var snapshottedAnimation: CAAnimation?
+    weak var snapshottedAnimation: CAAnimation?
 
     /// The completion timer, also indicates whether or not the view is animating
-    var animationCompletionTimer: Timer?
+    weak var animationCompletionTimer: Timer?
 
     typealias AnimationCompletion = () -> Void
 
@@ -417,6 +417,11 @@ import UIKit
                                                selector: #selector(snapshotAnimation),
                                                name: UIApplication.willResignActiveNotification,
                                                object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        resetAnimation()
     }
 
     /**
@@ -484,7 +489,7 @@ import UIKit
         ringLayer.timeOffset = pauseTime
 
         if let fireTime = animationCompletionTimer?.fireDate {
-            pausedTimeRemaining = fireTime.timeIntervalSince(Date())
+            pausedTimeRemaining = fireTime.timeIntervalSince(Date.current)
         } else {
             pausedTimeRemaining = 0
         }
@@ -565,7 +570,11 @@ import UIKit
         ringLayer.shouldAnimateProperties = true
         ringLayer.propertyAnimationDuration = duration
         CATransaction.begin()
-        CATransaction.setCompletionBlock {
+        CATransaction.setCompletionBlock { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
             // Reset and call completion
             self.ringLayer.shouldAnimateProperties = false
             self.ringLayer.propertyAnimationDuration = 0.0

@@ -39,6 +39,7 @@ class UICircularRingLayer: CAShapeLayer {
     @NSManaged var value: CGFloat
     @NSManaged var minValue: CGFloat
     @NSManaged var maxValue: CGFloat
+    @NSManaged var displayValueAboveMax: Bool
 
     /// the delegate for the value, is notified when value changes
     @NSManaged weak var ring: UICircularRing!
