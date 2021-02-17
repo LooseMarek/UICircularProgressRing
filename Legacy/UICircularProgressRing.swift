@@ -25,7 +25,7 @@
 
 import UIKit
 
-final public class UICircularProgressRing: UICircularRing {
+open class UICircularProgressRing: UICircularRing {
     // MARK: Members
 
     /**
@@ -218,7 +218,7 @@ final public class UICircularProgressRing: UICircularRing {
      ## Author
      Luis Padron
      */
-    public func startProgress(to value: CGFloat, duration: TimeInterval, completion: ProgressCompletion? = nil) {
+    open func startProgress(to value: CGFloat, duration: TimeInterval, completion: ProgressCompletion? = nil) {
         // Store the completion event locally
         self.completion = completion
 
